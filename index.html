@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Công dân số văn minh – Toán 7</title>
+<meta name="description" content="Học liệu tương tác Tin học 7 – Bài 5: Ứng xử trên mạng. GV Ngô Thị Phương, THCS Võ Thị Sáu, Hải Phòng.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800;900&family=Lexend:wght@600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap');
+:root{--bg:#eef4ff;--panel:#fff;--ink:#14213d;--dim:#5d6b86;--line:#d6e2f7;--acc:#2563eb;--accdk:#1e40af;--acc2:#10b981;--onacc:#fff;--gold:#e39a00;--gold2:#8a5a00;--goldbg:#fff3d6;--soft:#e6eefc;--note:#f7faff;--inbg:#fff;
+--okbg:#e4f7ee;--okc:#13653f;--warnbg:#fff0e0;--warnc:#9a4706;--infobg:#eaf0ff;--infoc:#1e3a8a;--shadow:0 3px 16px rgba(20,33,61,.08);--certbg:radial-gradient(circle at 50% 0,#fff,#e3edff);--certink:#14213d;--certacc:#2563eb}
+body{background:radial-gradient(circle at 95% -5%,rgba(37,99,235,.18),transparent 35%),radial-gradient(circle at -5% 100%,rgba(16,185,129,.16),transparent 40%),var(--bg)}
+h1,.hero h2,.cert h2,.cert .ct,.act h3,.room h3{font-family:'Nunito','Lexend',sans-serif!important;letter-spacing:0}
+
+*{box-sizing:border-box}[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 'Be Vietnam Pro',system-ui,sans-serif}
+.app{max-width:1140px;margin:0 auto;padding:18px 16px 26px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{display:flex;gap:14px;align-items:center}
+.logo{flex:0 0 66px;height:66px;border:2px solid var(--acc);border-radius:12px;display:flex;flex-direction:column;justify-content:center;padding:4px 9px;color:var(--acc);background:var(--panel)}
+.logo small{font:700 11px 'JetBrains Mono',monospace}.logo b{font:800 21px/1.1 'Lexend',sans-serif;white-space:nowrap}
+h1{margin:0;font:800 clamp(26px,5vw,46px)/1.08 'Lexend',sans-serif;letter-spacing:-.015em}
+.sub{font:600 12px 'JetBrains Mono',monospace;letter-spacing:.08em;color:var(--dim);margin-top:5px;text-transform:uppercase}
+.hud{display:flex;gap:8px}
+.hbtn{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:8px 14px;font:600 14px 'JetBrains Mono',monospace;cursor:pointer}
+.hbtn b{color:var(--gold);font-size:17px}
+.rooms{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px}
+.rooms button{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:8px 14px;font:700 14px 'Be Vietnam Pro',sans-serif;cursor:pointer;display:flex;gap:7px;align-items:center}
+.rooms button .n{font:600 12px 'JetBrains Mono',monospace;color:var(--dim)}
+.rooms button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}.rooms button.on .n{color:inherit;opacity:.7}
+.chip{display:inline-block;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);border:1px solid var(--acc);border-radius:999px;padding:3px 11px;background:var(--panel)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:center}
+.hero h2{font:800 clamp(26px,4.3vw,42px)/1.15 'Lexend',sans-serif;margin:12px 0;letter-spacing:-.01em}
+.hero p{color:var(--dim)}
+.quote{border-left:4px solid var(--gold);padding:2px 12px;color:var(--gold2);font-size:18px;margin:12px 0}
+.hub{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:24px}
+.room{display:flex;gap:14px;text-align:left;cursor:pointer;color:var(--ink);font:inherit;transition:transform .15s,border-color .15s}
+.room:hover{border-color:var(--acc);transform:translateY(-2px)}
+.room .t,.tile{flex:0 0 64px;height:64px;border:2px solid var(--acc);border-radius:12px;display:flex;flex-direction:column;justify-content:center;padding:4px 8px;color:var(--acc)}
+.room .t small{font:700 11px 'JetBrains Mono',monospace}.room .t b{font:800 18px/1.1 'Lexend',sans-serif;white-space:nowrap}
+.room h3{margin:0;font:700 20px/1.25 'Lexend',sans-serif}.room p{margin:3px 0 5px;color:var(--dim);font-size:14px}
+.room .st{font:700 13px 'JetBrains Mono',monospace;color:var(--gold)}
+.rhead{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:14px}
+.coach{display:flex;gap:10px;align-items:center;flex:1 1 380px}
+.coach .av{font-size:36px;line-height:1;animation:bob 2.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-5px)}}
+.coach .say{background:var(--panel);border:1px solid var(--line);border-radius:4px 16px 16px 16px;padding:8px 13px;font-size:15px;flex:1}
+.act{margin-bottom:16px}
+.act h3{margin:0 0 4px;font:700 21px/1.3 'Lexend',sans-serif;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bpill{font:700 12px 'JetBrains Mono',monospace;border:1px dashed var(--line);color:var(--dim);border-radius:999px;padding:2px 9px}
+.bpill.got{border:1px solid var(--gold);color:var(--gold2);background:var(--goldbg)}
+.dim{color:var(--dim)}.small{font-size:14px}
+.tnote{border:1px dashed var(--line);border-radius:14px;padding:10px 14px;margin-top:14px;background:var(--note);font-size:15px}
+.tnote summary{cursor:pointer;font-weight:800;color:var(--acc)}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.center{justify-content:center}
+.btn{border:none;border-radius:13px;padding:11px 18px;font:800 16px 'Be Vietnam Pro',sans-serif;cursor:pointer;transition:transform .1s}
+.btn:active{transform:scale(.96)}
+.btn.main{background:var(--acc);color:var(--onacc);box-shadow:0 4px 0 var(--accdk)}
+.btn.ghost{background:var(--soft);color:var(--ink)}
+.btn.line{background:transparent;border:2px solid var(--line);color:var(--ink)}
+.btn[disabled]{opacity:.45;cursor:default}
+.msg{border-radius:13px;padding:10px 14px;margin-top:12px;font-size:15.5px}
+.msg.ok{background:var(--okbg);color:var(--okc)}.msg.warn{background:var(--warnbg);color:var(--warnc)}.msg.info{background:var(--infobg);color:var(--infoc)}
+.prog{height:9px;background:var(--soft);border-radius:99px;overflow:hidden;margin:10px 0 2px}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));width:0;transition:width .35s}
+.fx{display:inline-flex;align-items:center;gap:2px;vertical-align:middle}
+.fr{display:inline-flex;flex-direction:column;text-align:center;line-height:1.05;vertical-align:middle}
+.fr b{font-weight:inherit;padding:0 3px}.fr b:first-child{border-bottom:.09em solid currentColor}
+.numin{width:84px;font:800 20px 'Be Vietnam Pro',sans-serif;text-align:center;padding:8px;border:2px solid var(--line);border-radius:12px;background:var(--inbg);color:var(--ink)}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:10px}
+.opt{border:2px solid var(--line);background:var(--panel);color:var(--ink);border-radius:14px;padding:12px 14px;font:700 17px 'Be Vietnam Pro',sans-serif;cursor:pointer;text-align:left}
+.opt:hover{border-color:var(--acc)}
+.opt.right{border-color:#16a34a;background:var(--okbg);color:var(--okc)}.opt.wrong{border-color:#dc2626;background:var(--warnbg);color:var(--warnc)}
+.big{font:800 34px 'Be Vietnam Pro',sans-serif;color:var(--acc)}
+svg{display:block;width:100%;height:auto;user-select:none;-webkit-user-select:none}
+.shake{animation:sh .35s}@keyframes sh{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.pop{animation:pp .5s}@keyframes pp{40%{transform:scale(1.15)}}
+/* quiz */
+.quiz{max-width:820px;margin:0 auto}
+.qtop{display:flex;justify-content:space-between;font:700 14px 'JetBrains Mono',monospace;color:var(--dim)}
+.qbar{height:8px;background:var(--soft);border-radius:99px;overflow:hidden;margin:8px 0 14px}.qbar i{display:block;height:100%;background:var(--gold);transition:width 1s linear}
+.qq{font:700 22px/1.4 'Lexend',sans-serif;margin:6px 0 10px}
+.cert{text-align:center;border:4px double var(--gold);border-radius:22px;padding:26px 18px;background:var(--certbg);color:var(--certink)}
+.cert .m{font:700 13px 'JetBrains Mono',monospace;letter-spacing:.2em}
+.cert h2{font:800 30px 'Lexend',sans-serif;margin:10px 0 2px;letter-spacing:.04em}
+.cert .ct{font:800 22px 'Lexend',sans-serif;color:var(--certacc)}
+.cert .who{font:900 30px 'Be Vietnam Pro',sans-serif;border-bottom:2px dashed var(--gold);display:inline-block;min-width:240px;padding:0 12px;margin:8px 0}
+.cert input{font:700 17px 'Be Vietnam Pro',sans-serif;padding:9px 12px;border:2px solid var(--line);border-radius:12px;max-width:100%;background:#fff;color:#1b2440}
+table.info{width:100%;border-collapse:collapse;font-size:15px}
+table.info th{text-align:left;vertical-align:top;padding:9px 12px 9px 0;border-bottom:1px solid var(--line);width:28%;color:var(--acc)}
+table.info td{padding:9px 0;border-bottom:1px solid var(--line)}
+footer{text-align:center;color:var(--dim);font-size:13px;padding:6px 16px 30px}
+#cf{position:fixed;inset:0;pointer-events:none;z-index:9998}
+#toast{position:fixed;left:50%;top:18px;transform:translate(-50%,-200%);background:var(--ink);color:var(--bg);padding:11px 20px;border-radius:999px;font-weight:800;z-index:9999;transition:transform .35s;box-shadow:0 10px 30px rgba(0,0,0,.25);max-width:92vw;text-align:center}
+#toast.show{transform:translate(-50%,0)}#toast:empty{display:none}
+.hscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}.swipe{display:none;text-align:center;font-size:12.5px;color:var(--dim)}
+@media(max-width:820px){.hero,.grid2{grid-template-columns:1fr}}
+@media(max-width:600px){.app{padding:14px 12px}.rooms button{padding:7px 11px;font-size:13px}.panel{padding:14px}.logo{flex-basis:56px;height:56px}.swipe{display:block}.hscroll svg{min-width:640px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.qstage{margin-bottom:14px}
+
+.qbig{font:800 20px/1.4 'Lexend',sans-serif;margin:10px 0}
+.yn{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:10px}.yn .opt{min-width:180px;text-align:center}
+.phone{max-width:430px;margin:12px auto;border:10px solid #14213d;border-radius:34px;background:#f4f7fb;overflow:hidden;box-shadow:0 14px 34px rgba(20,33,61,.18)}
+.phone .bar{background:#2563eb;color:#fff;padding:10px 14px;font:800 15px 'Nunito',sans-serif;display:flex;gap:8px;align-items:center}
+.phone .bar small{opacity:.8;font-weight:600}
+.chat{padding:12px;display:flex;flex-direction:column;gap:8px;min-height:190px}
+.bub{max-width:82%;padding:9px 12px;border-radius:16px;font-size:15px;line-height:1.45;animation:pop2 .3s}@keyframes pop2{from{transform:scale(.9);opacity:0}}
+.bub.in{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}.bub.in b{display:block;font-size:12.5px;color:#2563eb}
+.bub.me{align-self:flex-end;background:#2563eb;color:#fff;border-bottom-right-radius:4px}
+.bub.sys{align-self:center;background:#fff3d6;color:#8a5a00;font-size:13px;border-radius:999px}
+.replies{display:grid;gap:8px;padding:10px;background:#fff;border-top:1px solid var(--line)}
+.replies .opt{font-size:15px;border-radius:14px}
+.browser{border:2px solid var(--line);border-radius:14px;overflow:hidden;margin:12px 0;background:#fff;position:relative}
+.browser .top{background:#e6eefc;padding:8px 10px;display:flex;gap:6px;align-items:center;font:600 13px 'JetBrains Mono',monospace;color:var(--dim)}
+.browser .top i{width:10px;height:10px;border-radius:50%;background:#f87171;display:inline-block}.browser .top i+i{background:#fbbf24}.browser .top i+i+i{background:#34d399}
+.browser .page{min-height:150px;padding:16px;display:flex;align-items:center;justify-content:center}
+.popup{border:3px solid #ef4444;border-radius:16px;padding:14px 16px;background:#fff7f7;max-width:440px;text-align:center;box-shadow:0 10px 24px rgba(0,0,0,.12);animation:pop2 .3s}
+.popup .e{font-size:40px}.popup b{display:block;font-size:18px;margin:4px 0}
+.sortbox{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.bin{border:2px dashed var(--line);border-radius:16px;padding:10px;min-height:120px;background:#fff;cursor:pointer;text-align:left;font:inherit;color:var(--ink)}
+.bin:hover{border-color:var(--acc)}.bin b{display:block;margin-bottom:6px}
+.bin .got{display:flex;flex-wrap:wrap;gap:5px}.bin .got span{font-size:13px;background:var(--soft);border-radius:999px;padding:3px 9px}
+.card3{display:flex;gap:14px;align-items:center;justify-content:center;border:2px solid var(--line);border-radius:18px;padding:16px;margin:12px 0;background:linear-gradient(135deg,#fff,#eef4ff);font:800 20px 'Lexend',sans-serif}
+.card3 .e{font-size:46px}
+.stepcards{display:grid;gap:10px;margin-top:10px}
+.sc{border:2px solid var(--line);background:var(--panel);border-radius:14px;padding:12px 14px;text-align:left;font:600 16px 'Be Vietnam Pro',sans-serif;color:var(--ink);cursor:pointer;display:flex;gap:10px;align-items:center}
+.sc b.n{flex:0 0 30px;height:30px;border-radius:50%;background:var(--soft);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace}
+.sc.done{border-color:#16a34a;background:var(--okbg);cursor:default}.sc.done b.n{background:#16a34a;color:#fff}
+.planner{display:grid;gap:10px;margin-top:10px}
+.pr{display:grid;grid-template-columns:190px 1fr 92px;gap:10px;align-items:center}
+.pr input{width:100%;accent-color:var(--acc)}
+.pr b{font:800 18px 'JetBrains Mono',monospace;text-align:right}
+.daybar{display:flex;height:34px;border-radius:12px;overflow:hidden;margin-top:12px;border:1px solid var(--line)}
+.daybar span{display:flex;align-items:center;justify-content:center;color:#fff;font:700 12px 'Be Vietnam Pro',sans-serif;white-space:nowrap;overflow:hidden}
+.think{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:10px}
+.think div{border:1px solid var(--line);border-radius:12px;padding:8px 10px;background:var(--note);font-size:14px}
+.think b{color:var(--acc);font-size:18px;display:block}
+@media(max-width:600px){.pr{grid-template-columns:1fr 60px}.pr label{grid-column:1/3}.sortbox{grid-template-columns:1fr}}
+
+.homewrap{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:24px;align-items:center;margin-top:24px}
+.phone2{border:12px solid #14213d;border-radius:40px;background:linear-gradient(160deg,#3b82f6,#8b5cf6 55%,#ec4899);padding:10px 14px 16px;box-shadow:0 18px 40px rgba(20,33,61,.3);color:#fff;max-width:380px;width:100%;margin:0 auto}
+.sbar{display:flex;justify-content:space-between;font:700 13px 'JetBrains Mono',monospace;padding:2px 6px 10px}
+.wid{background:rgba(255,255,255,.2);backdrop-filter:blur(4px);border-radius:20px;padding:12px 14px;margin-bottom:14px}.wid b{display:block;font:900 18px 'Nunito',sans-serif}.wid small{opacity:.9}
+.wbar{height:8px;border-radius:99px;background:rgba(255,255,255,.3);margin-top:8px;overflow:hidden}.wbar i{display:block;height:100%;background:#fde047}
+.apps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 8px;padding:6px 0 16px}
+.appi{background:none;border:none;color:#fff;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;font:700 12.5px 'Be Vietnam Pro',sans-serif;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.appi .ico{position:relative;width:62px;height:62px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 6px 14px rgba(0,0,0,.25);transition:transform .12s}
+.appi:hover .ico{transform:scale(1.08)}.appi .ico i{position:absolute;top:-6px;right:-6px;background:#ef4444;color:#fff;font:800 12px 'Be Vietnam Pro',sans-serif;font-style:normal;min-width:20px;height:20px;border-radius:99px;display:flex;align-items:center;justify-content:center;border:2px solid #fff}
+.dock{background:rgba(255,255,255,.25);border-radius:22px;padding:10px;text-align:center;font:700 13px 'Be Vietnam Pro',sans-serif}
+.hometip{color:#1e293b;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}.hometip b{font:900 20px 'Nunito',sans-serif}
+.rooms button{border-radius:14px}.rooms button.on{background:#2563eb;border-color:#2563eb;color:#fff}
+.fw{border-radius:18px;padding:14px;background:#0f172a;color:#e2e8f0;text-align:center}.fw.win{background:linear-gradient(135deg,#065f46,#0f172a)}
+.fwh{font:800 14px 'JetBrains Mono',monospace;letter-spacing:.06em}
+.fwrow{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:10px 0}
+.fwrow span{width:48px;height:48px;border-radius:12px;background:#1e293b;border:2px solid #334155;display:flex;align-items:center;justify-content:center;font-size:24px;color:#64748b}
+.fwrow span.ok{border-color:#22c55e;background:#052e1a;animation:pp .5s}.fwrow span.bad{border-color:#ef4444;background:#3b0a0a}.fwrow span.cur{border-color:#60a5fa;box-shadow:0 0 0 3px rgba(96,165,250,.35)}
+.fwt{font:600 14px 'Be Vietnam Pro',sans-serif;color:#cbd5e1}
+.idcard{max-width:640px;margin:0 auto;border-radius:22px;overflow:hidden;background:linear-gradient(135deg,#eff6ff,#f5f3ff);border:2px solid #c7d2fe;box-shadow:0 14px 34px rgba(37,99,235,.2);color:#14213d}
+.idh{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;background:linear-gradient(90deg,#2563eb,#8b5cf6);color:#fff;padding:12px 16px;font:800 13px 'JetBrains Mono',monospace;letter-spacing:.08em}
+.idb{display:flex;gap:16px;padding:18px;align-items:center;flex-wrap:wrap}
+.ida{width:96px;height:120px;border-radius:14px;background:#dbeafe;display:flex;align-items:center;justify-content:center;font-size:54px;border:2px solid #93c5fd}
+.idi{flex:1;min-width:200px}.idi small{display:block;color:#64748b;font:700 11px 'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+.idi .who{font:900 26px 'Nunito',sans-serif;color:#1e3a8a}.idi b{font:800 17px 'Nunito',sans-serif}
+.idg{display:grid;grid-template-columns:repeat(3,auto);gap:10px;margin-top:6px}
+.idq{width:90px;height:90px;display:grid;grid-template-columns:repeat(9,1fr);border:4px solid #fff;outline:2px solid #14213d}.idq i{display:block}
+.idf{border-top:1px dashed #c7d2fe;padding:10px 16px;text-align:center;font:700 14px 'Be Vietnam Pro',sans-serif;color:#4338ca}.idf small{color:#64748b;font-weight:600}
+@media(max-width:720px){.homewrap{grid-template-columns:1fr}}
+
+.hometip p{color:#475569;margin:8px 0 0}
+#cName{font:700 16px 'Be Vietnam Pro',sans-serif;padding:8px 12px;border:2px solid #c7d2fe;border-radius:10px}
+
+</style>
+</head>
+<body>
+<canvas id="cf"></canvas><div id="toast" role="status" aria-live="polite"></div>
+<div class="app">
+<header class="top">
+  <div class="brand"><div class="logo"><small>BÀI 5</small><b>@</b></div><div><h1>Công dân số văn minh</h1><div class="sub">Tin học 7 · Bài 5 · Ứng xử trên mạng · Học liệu tương tác và mô phỏng</div></div></div>
+  <div class="hud"><button class="hbtn" id="snd" aria-label="Bật/tắt âm thanh">🔊</button><div class="hbtn">Huy hiệu <b id="bc">0</b>/<span id="bt">0</span></div></div>
+</header>
+<nav class="rooms" id="nav" aria-label="Các phòng học"></nav>
+
+<section class="view" id="v-hub">
+  <div class="hero">
+    <div><span class="chip">Phòng chờ</span><h2>Một tin nhắn gửi đi mất 1 giây, nhưng có thể làm bạn buồn cả tuần. Em đã nghĩ kĩ trước khi bấm Gửi chưa?</h2>
+<div class="quote">Gợi ý: sau màn hình là một người thật, có cảm xúc thật.</div>
+<p>Cùng Trợ lí Mạng đi qua 4 phòng: nhóm chat lớp văn minh, lá chắn an toàn trước thông tin xấu, nói không với bắt nạt trên mạng và cân bằng thời gian sử dụng Internet. Hoàn thành nhiệm vụ để nhận huy hiệu và giấy chứng nhận Công dân số văn minh.</p>
+</div>
+    <div class="panel" style="text-align:center">
+<div class="phone" style="margin:0 auto;max-width:360px"><div class="bar">💬 Nhóm lớp 7C8 <small>· 38 thành viên</small></div><div class="chat" id="heroChat" style="min-height:250px"></div></div>
+<div id="heroCap" class="dim small" style="margin-top:8px;min-height:22px"></div>
+</div>
+  </div>
+  <div class="hub" id="hubRooms"></div>
+</section>
+
+<!-- R1 NHÓM CHAT -->
+<section class="view" id="v-r1" hidden>
+  <div class="grid2">
+    <div class="panel act">
+      <h3>Nhóm chat lớp văn minh <span class="bpill" data-badge="chat"></span></h3>
+      <div class="dim">Đọc tin nhắn rồi chọn câu trả lời văn minh nhất. Đúng 4/5 tình huống để nhận huy hiệu.</div>
+      <div class="prog"><i id="ch-p"></i></div><div class="dim small" id="ch-c"></div>
+      <div class="phone"><div class="bar">💬 <span id="ch-title">Nhóm lớp 7C8</span></div><div class="chat" id="ch-log"></div><div class="replies" id="ch-o"></div></div>
+      <div id="ch-f"></div><div class="row"><button class="btn ghost" id="ch-nx">Tình huống tiếp ➜</button></div>
+    </div>
+    <div class="panel act">
+      <h3>Nghĩ trước khi đăng <span class="bpill" data-badge="think"></span></h3>
+      <div class="dim">Trước khi đăng, hãy tự hỏi 5 câu:</div>
+      <div class="think"><div><b>Thật?</b>Thông tin có đúng sự thật không?</div><div><b>Tử tế?</b>Có làm ai buồn, xấu hổ không?</div><div><b>Riêng tư?</b>Có lộ thông tin cá nhân không?</div><div><b>Hữu ích?</b>Có giúp ích cho ai không?</div><div><b>Cần thiết?</b>Có thật sự cần đăng không?</div></div>
+      <div class="prog"><i id="tk-p"></i></div><div class="dim small" id="tk-c"></div>
+      <div class="card3"><span class="e">📝</span><span id="tk-q"></span></div>
+      <div class="yn"><button class="opt" data-k="1">📤 Đăng</button><button class="opt" data-k="0">🗑️ Không đăng</button></div>
+      <div id="tk-f"></div><div class="row"><button class="btn ghost" id="tk-nx">Bài đăng tiếp ➜</button></div>
+    </div>
+  </div>
+  <details class="tnote"><summary>Gợi ý cho giáo viên</summary>Dùng ở mục 1. Giao tiếp qua mạng có văn hoá. Chiếu nhóm chat mô phỏng lên màn hình, cho học sinh giơ tay chọn trước khi bấm. Nhấn mạnh: chữ IN HOA toàn bộ dễ bị hiểu là đang quát; không chia sẻ ảnh, thông tin của người khác khi chưa được đồng ý; nhắn tin cho thầy cô cần có lời chào, xưng tên lớp, viết đủ dấu và cảm ơn. Năm câu hỏi "Thật – Tử tế – Riêng tư – Hữu ích – Cần thiết" có thể dán lên góc lớp.</details>
+</section>
+
+<!-- R2 LÁ CHẮN -->
+<section class="view" id="v-r2" hidden>
+  <div class="panel act">
+    <h3>Lá chắn an toàn <span class="bpill" data-badge="shield"></span></h3>
+    <div class="dim">Khi đang dùng Internet, những tình huống dưới đây bất ngờ xuất hiện. Em xử lí thế nào? Đúng 4/5 để nhận huy hiệu.</div>
+    <div class="prog"><i id="sh-p"></i></div><div class="dim small" id="sh-c"></div>
+    <div class="browser"><div class="top"><i></i><i></i><i></i><span id="sh-url">https://…</span></div><div class="page"><div class="popup" id="sh-pop"></div></div></div>
+    <div class="opts" id="sh-o"></div><div id="sh-f"></div><div class="row"><button class="btn ghost" id="sh-nx">Tình huống tiếp ➜</button></div>
+  </div>
+  <div class="panel act">
+    <h3>Két sắt thông tin cá nhân <span class="bpill" data-badge="privacy"></span></h3>
+    <div class="dim">Mỗi thông tin dưới đây nên cất vào két (giữ bí mật) hay có thể chia sẻ khi trò chuyện trên mạng? Đúng 7/8 để nhận huy hiệu.</div>
+    <div class="prog"><i id="pv-p"></i></div><div class="dim small" id="pv-c"></div>
+    <div class="card3"><span class="e" id="pv-e"></span><span id="pv-q"></span></div>
+    <div class="sortbox"><button class="bin" data-k="1"><b>🔒 Giữ bí mật</b><div class="got" id="pv-1"></div></button><button class="bin" data-k="0"><b>🙂 Có thể chia sẻ</b><div class="got" id="pv-0"></div></button></div>
+    <div id="pv-f"></div><div class="row"><button class="btn ghost" id="pv-nx">Thông tin tiếp ➜</button></div>
+  </div>
+  <details class="tnote"><summary>Gợi ý cho giáo viên</summary>Dùng ở mục 2. Phòng tránh thông tin không phù hợp. Các nguyên tắc: truy cập trang web phù hợp lứa tuổi; gặp nội dung không phù hợp thì đóng ngay; không nhấn vào đường link, quảng cáo lạ; nhờ bố mẹ cài phần mềm lọc nội dung; hỏi người lớn khi cần. Tình huống chatbot AI giúp học sinh hiểu: thông tin do AI tạo ra cần được kiểm tra lại với nguồn tin cậy và không nhập thông tin cá nhân vào AI.</details>
+</section>
+
+<!-- R3 BẮT NẠT -->
+<section class="view" id="v-r3" hidden>
+  <div class="grid2">
+    <div class="panel act">
+      <h3>Đâu là bắt nạt trên mạng? <span class="bpill" data-badge="bully"></span></h3>
+      <div class="dim">Hành động nào là bắt nạt trên mạng? Đúng 4/5 để nhận huy hiệu.</div>
+      <div class="prog"><i id="bl-p"></i></div><div class="dim small" id="bl-c"></div>
+      <div class="card3"><span class="e" id="bl-e"></span><span id="bl-q" style="font-size:18px"></span></div>
+      <div class="yn"><button class="opt" data-k="1">⚠️ Là bắt nạt</button><button class="opt" data-k="0">✅ Không phải</button></div>
+      <div id="bl-f"></div><div class="row"><button class="btn ghost" id="bl-nx">Tình huống tiếp ➜</button></div>
+    </div>
+    <div class="panel act">
+      <h3>Nếu em bị bắt nạt trên mạng <span class="bpill" data-badge="help"></span></h3>
+      <div class="dim">Sắp xếp 4 việc cần làm theo đúng thứ tự (bấm lần lượt).</div>
+      <div class="stepcards" id="hp-cards"></div><div id="hp-f"></div>
+      <div class="tip small" style="margin-top:12px;border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--note)">📞 <b>Tổng đài quốc gia bảo vệ trẻ em 111</b> – gọi miễn phí khi em cần giúp đỡ.</div>
+    </div>
+  </div>
+  <details class="tnote"><summary>Gợi ý cho giáo viên</summary>Bắt nạt trên mạng gồm: nhắn tin đe doạ, chế giễu, lan truyền ảnh hoặc tin đồn để làm xấu hổ người khác, cố ý cô lập bạn trong nhóm chat. Khuyến khích học sinh tin tưởng nói chuyện với bố mẹ, thầy cô; giáo viên chủ nhiệm có thể dùng phòng này trong giờ sinh hoạt lớp. Không yêu cầu học sinh kể trường hợp cá nhân trước lớp.</details>
+</section>
+
+<!-- R4 CÂN BẰNG -->
+<section class="view" id="v-r4" hidden>
+  <div class="panel act">
+    <h3>Dấu hiệu nghiện Internet <span class="bpill" data-badge="signs"></span></h3>
+    <div class="dim">Thói quen nào là dấu hiệu nghiện Internet? Đúng 4/5 để nhận huy hiệu.</div>
+    <div class="prog"><i id="sg-p"></i></div><div class="dim small" id="sg-c"></div>
+    <div class="card3"><span class="e" id="sg-e"></span><span id="sg-q" style="font-size:18px"></span></div>
+    <div class="yn"><button class="opt" data-k="1">🚨 Là dấu hiệu</button><button class="opt" data-k="0">👍 Thói quen tốt</button></div>
+    <div id="sg-f"></div><div class="row"><button class="btn ghost" id="sg-nx">Câu tiếp ➜</button></div>
+  </div>
+  <div class="panel act">
+    <h3>Thời gian biểu cân bằng của em <span class="bpill" data-badge="balance"></span></h3>
+    <div class="dim">Kéo các thanh để lập thời gian biểu một ngày đi học (tổng đúng 24 giờ). Thời gian biểu cân bằng: ngủ đủ giấc, có vận động, giải trí trên màn hình vừa phải.</div>
+    <div class="planner" id="pl-rows"></div>
+    <div class="daybar" id="pl-bar"></div>
+    <div class="row"><button class="btn main" id="pl-ck">✔ Kiểm tra thời gian biểu</button></div>
+    <div id="pl-f"></div>
+  </div>
+  <details class="tnote"><summary>Gợi ý cho giáo viên</summary>Dùng ở mục 3. Phòng tránh nghiện Internet. Tác hại: ít giao tiếp ngoài đời, sa sút học tập, dễ bị bắt nạt và tiếp xúc thông tin xấu, ảnh hưởng sức khoẻ (mắt, giấc ngủ, vận động). Các mốc trong thời gian biểu là gợi ý giáo dục để học sinh tự điều chỉnh, không phải chỉ định y tế. Có thể giao học sinh chụp thời gian biểu, cùng bố mẹ kí cam kết thực hiện trong một tuần.</details>
+</section>
+
+
+<section class="view" id="v-r5" hidden>
+  <div class="quiz" id="quiz"></div>
+  <details class="tnote" style="max-width:820px;margin:14px auto 0"><summary>Gợi ý cho giáo viên</summary>Dùng ở phần Luyện tập hoặc củng cố cuối tiết, mỗi câu 30 giây. Đạt từ 6/8 câu nhận giấy chứng nhận Công dân số văn minh. Có thể dùng trong giờ sinh hoạt lớp về văn hoá mạng.</details>
+</section>
+
+<section class="view" id="v-info" hidden>
+  <div class="panel" style="max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:14px">
+    <span class="chip" style="align-self:flex-start">Thông tin học liệu (theo Công văn 5158/SGDĐT-GDTrH)</span>
+    <h2 style="font:800 28px 'Lexend',sans-serif;margin:0">Công dân số văn minh – Học liệu tương tác và mô phỏng</h2>
+    <div style="overflow-x:auto"><table class="info" id="infoT"></table></div>
+  </div>
+</section>
+</div>
+<footer>Học liệu số Tin học 7 · Ngô Thị Phương – Trường THCS Võ Thị Sáu, phường An Biên, Hải Phòng · Giáo viên đồng sáng tạo cùng AI</footer>
+<script>
+/* ====== KHUNG CHUNG (dùng cho các học liệu Toán 7) ====== */
+const $=id=>document.getElementById(id),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a||1}
+function simp(f){const g=gcd(f.n,f.d);let n=f.n/g,d=f.d/g;if(d<0){n=-n;d=-d}return{n,d}}
+function parse(s){s=String(s).replace(/−/g,'-').replace(',','.').trim();
+  if(s.includes(' ')){const[w,fr]=s.split(' ');const[a,b]=fr.split('/').map(Number),W=Number(w);return simp({n:(Math.abs(W)*b+a)*(W<0?-1:1),d:b})}
+  if(s.includes('/')){const[a,b]=s.split('/').map(Number);return{n:a,d:b}}
+  const p=s.split('.');if(p.length===1)return{n:Number(s),d:1};
+  const d=Math.pow(10,p[1].length);return simp({n:Math.round(Number(s)*d),d})}
+function val(s){const f=parse(s);return f.n/f.d}
+function pretty(s){return String(s).replace(/-/g,'−')}
+function F(s){s=String(s);const neg=s[0]==='-',b=neg?s.slice(1):s;
+  if(b.includes(' ')){const[w,fr]=b.split(' ');const[n,d]=fr.split('/');return `<span class="fx">${neg?'−':''}${w}<span class="fr"><b>${n}</b><b>${d}</b></span></span>`}
+  if(b.includes('/')){const[n,d]=b.split('/');return `<span class="fx">${neg?'−':''}<span class="fr"><b>${n}</b><b>${d}</b></span></span>`}
+  return (neg?'−':'')+b}
+function fs(n,d){return (n<0?'−':'')+Math.abs(n)+(d===1?'':'/'+d)}
+function factors(n){const f=[];let d=2;n=Math.abs(n);while(n>1){while(n%d===0){f.push(d);n/=d}d++}return f}
+function decimal(a,b){const sign=(a<0)!==(b<0)&&a!==0?'-':'';a=Math.abs(a);b=Math.abs(b);
+  const int=Math.floor(a/b);let r=a%b;const seen={},digits=[],steps=[];let cs=-1;
+  while(r!==0&&digits.length<260){if(seen[r]!==undefined){cs=seen[r];break}seen[r]=digits.length;const q=Math.floor(r*10/b),nr=(r*10)%b;steps.push({r,q,nr});digits.push(q);r=nr}
+  const pre=cs<0?digits.join(''):digits.slice(0,cs).join(''),cyc=cs<0?'':digits.slice(cs).join('');
+  return{sign,int,pre,cyc,steps,repR:r}}
+function fmtD(d){return (d.sign?'−':'')+d.int+(d.pre||d.cyc?','+d.pre+(d.cyc?'('+d.cyc+')':''):'')}
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+
+/* âm thanh */
+let AC=null,soundOn=true;try{soundOn=localStorage.getItem('vts-snd')!=='0'}catch(e){}
+function beep(f,d,type,v,w){if(!soundOn)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();
+  const o=AC.createOscillator(),g=AC.createGain(),t=AC.currentTime+(w||0);o.type=type||'sine';o.frequency.value=f;
+  g.gain.setValueAtTime(v||.08,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d+.03)}catch(e){}}
+const sfx={ok(){beep(660,.14);beep(990,.22,'sine',.08,.11)},bad(){beep(190,.28,'square',.035)},tap(){beep(540,.07,'triangle',.06)},
+  flip(){beep(420,.05,'triangle',.04)},tick(){beep(880,.03,'square',.02)},win(){[523,659,784,1047].forEach((f,i)=>beep(f,.3,'sine',.08,i*.13))}};
+
+/* pháo giấy + thông báo */
+let cv,cx,parts=[],raf=0;
+function confetti(n){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;cv=cv||$('cf');cx=cx||cv.getContext('2d');cv.width=innerWidth;cv.height=innerHeight;
+  const cols=['#fbbf24','#f43f5e','#3b82f6','#22c55e','#ec4899','#14b8a6','#a78bfa'];
+  for(let i=0;i<(n||70);i++)parts.push({x:innerWidth/2+(Math.random()-.5)*240,y:innerHeight*.35,vx:(Math.random()-.5)*13,vy:-Math.random()*12-4,r:Math.random()*6+4,c:cols[i%7],a:Math.random()*6,l:95});
+  if(!raf)tick()}
+function tick(){cx.clearRect(0,0,cv.width,cv.height);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.45;p.a+=.2;p.l--;cx.save();cx.translate(p.x,p.y);cx.rotate(p.a);cx.fillStyle=p.c;cx.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);cx.restore()});
+  parts=parts.filter(p=>p.l>0&&p.y<cv.height+20);raf=parts.length?requestAnimationFrame(tick):(cx.clearRect(0,0,cv.width,cv.height),0)}
+let toastT=0;function toast(t){const e=$('toast');e.innerHTML=t;e.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>e.classList.remove('show'),2600)}
+
+/* trạng thái, huy hiệu */
+const ST={b:{},name:''};
+function loadST(){try{const o=JSON.parse(localStorage.getItem(L.key)||'{}');ST.b=o.b||{};ST.name=o.name||''}catch(e){}}
+function saveST(){try{localStorage.setItem(L.key,JSON.stringify(ST))}catch(e){}}
+function award(k){if(ST.b[k])return false;ST.b[k]=1;saveST();sfx.win();confetti(110);toast('🏅 Huy hiệu mới: '+L.badges[k]);counts();return true}
+function counts(){const n=Object.keys(L.badges).filter(k=>ST.b[k]).length;$('bc').textContent=n;$('bt').textContent=Object.keys(L.badges).length;
+  $$('.bpill').forEach(p=>{const k=p.dataset.badge;p.classList.toggle('got',!!ST.b[k]);p.textContent=(ST.b[k]?'🏅 ':'○ ')+L.badges[k]});
+  $$('#hubRooms .room').forEach(b=>{const r=L.rooms.find(x=>x[0]===b.dataset.go);b.querySelector('.st').textContent='★ '+r[5].filter(k=>ST.b[k]).length+'/'+r[5].length});if(L.renderHub)L.renderHub()}
+function say(t){const v=$$('.view').find(x=>!x.hidden);const s=v&&v.querySelector('.say');if(s)s.innerHTML='<b>'+L.coach+':</b> '+t}
+function msg(id,t,cls){$(id).innerHTML=t?`<div class="msg ${cls||'info'}">${t}</div>`:''}
+function prog(p,i,n,s){$(p+'-p').style.width=(i/n*100)+'%';$(p+'-c').textContent='Câu '+Math.min(i+1,n)+'/'+n+' · Đúng ngay lần đầu: '+s}
+const STOP=[];function stopAll(){STOP.forEach(f=>{try{f()}catch(e){}})}
+function go(v){if(!$('v-'+v))v='hub';stopAll();$$('.view').forEach(x=>x.hidden=x.id!=='v-'+v);$$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===v));
+  if(L.intro&&L.intro[v])say(L.intro[v]);if(v===L.quizRoom)qIntro();if(L.onEnter)L.onEnter(v);
+  try{history.replaceState(null,'','#'+v)}catch(e){}window.scrollTo(0,0)}
+
+/* thử thách tính giờ + giấy chứng nhận */
+let qi=0,qs=0,qt=null,tl=30,qLock=false,QS=[];
+STOP.push(()=>clearInterval(qt));
+function qIntro(){clearInterval(qt);$('quiz').innerHTML=`<div class="panel" style="text-align:center"><span class="chip">${L.quiz.length} câu · mỗi câu 30 giây</span>
+  <h2 style="font:800 30px 'Lexend',sans-serif;margin:12px 0 6px">${L.quizTitle}</h2><p class="dim">Đúng từ ${L.quizPass}/${L.quiz.length} câu trở lên để nhận giấy chứng nhận <b>${L.certTitle}</b>.</p>
+  <div class="row center"><input id="qName" class="numin" style="width:280px;font-size:17px;text-align:left" maxlength="40" placeholder="Tên và lớp của em" value="${(ST.name||'').replace(/"/g,'&quot;')}"></div>
+  <div class="row center"><button class="btn main" id="qGo">▶ Bắt đầu thử thách</button></div><p class="dim small">Tên chỉ lưu trên máy của em, không gửi đi đâu.</p></div>`;
+  $('qGo').onclick=()=>{ST.name=$('qName').value.trim();saveST();QS=L.quiz.map(q=>({...q,ord:shuffle(q.o.map((t,i)=>i))}));qi=0;qs=0;qRender()}}
+function qRender(){clearInterval(qt);const el=$('quiz');
+  if(qi>=QS.length){const pass=qs>=L.quizPass;if(pass)award('quiz');
+    const n=Object.keys(L.badges).filter(k=>ST.b[k]).length,N=Object.keys(L.badges).length;
+    const ctx={name:ST.name||'. . . . . . . .',qs,n:QS.length,b:n,B:N,date:new Date().toLocaleDateString('vi-VN'),nameIn:`<input id="cName" maxlength="40" placeholder="Sửa tên của em" value="${(ST.name||'').replace(/"/g,'&quot;')}">`};
+    if(pass&&L.cert){el.innerHTML=L.cert(ctx)+'<div class="row center"><button class="btn ghost" id="qAgain">↻ Làm lại thử thách</button></div>';confetti(160);
+      $('cName').oninput=e=>{ST.name=e.target.value.trim();saveST();$('certWho').textContent=ST.name||'. . . . . . . .'};$('qAgain').onclick=()=>{QS=L.quiz.map(q=>({...q,ord:shuffle(q.o.map((t,i)=>i))}));qi=0;qs=0;qRender()};return}
+    el.innerHTML=pass?`<div class="cert"><div class="m">${L.certTop}</div><h2>GIẤY CHỨNG NHẬN</h2><div class="ct">${L.certTitle}</div><div style="margin-top:10px">Trao cho</div>
+      <div class="who" id="certWho">${ST.name||'. . . . . . . .'}</div><div>đã hoàn thành ${L.certWhat} với <b>${qs}/${QS.length}</b> câu đúng và đạt <b>${n}/${N}</b> huy hiệu.</div>
+      <div class="small" style="margin-top:6px;opacity:.8">Ngày ${new Date().toLocaleDateString('vi-VN')} · GV hướng dẫn: Ngô Thị Phương – Trường THCS Võ Thị Sáu, Hải Phòng</div>
+      <div class="row center"><input id="cName" maxlength="40" placeholder="Sửa tên của em" value="${(ST.name||'').replace(/"/g,'&quot;')}"></div>
+      <div class="small" style="margin-top:6px">📸 Chụp màn hình giấy chứng nhận gửi cô nhé!</div></div><div class="row center"><button class="btn ghost" id="qAgain">↻ Làm lại thử thách</button></div>`
+     :`<div class="panel" style="text-align:center"><h2 style="font:800 30px 'Lexend',sans-serif">${qs}/${QS.length} câu đúng</h2><p>Cần ${L.quizPass}/${QS.length} câu để nhận giấy chứng nhận. Em ôn lại các phòng rồi thử lại nhé!</p><div class="row center"><button class="btn main" id="qAgain">↻ Làm lại</button></div></div>`;
+    if(pass){confetti(160);$('cName').oninput=e=>{ST.name=e.target.value.trim();saveST();$('certWho').textContent=ST.name||'. . . . . . . .'}}
+    $('qAgain').onclick=()=>{QS=L.quiz.map(q=>({...q,ord:shuffle(q.o.map((t,i)=>i))}));qi=0;qs=0;qRender()};return}
+  const q=QS[qi];tl=30;qLock=false;
+  el.innerHTML=(L.qStage?'<div id="qStage" class="qstage"></div>':'')+`<div class="panel"><div class="qtop"><span>Câu ${qi+1}/${QS.length}</span><span>Đúng: ${qs}</span><span id="qTime">⏱ 30 giây</span></div><div class="qbar"><i id="qBar" style="width:100%"></i></div>
+    <div class="qq">${q.q}</div><div class="opts" id="qOpts">${q.ord.map(i=>`<button class="opt" data-i="${i}">${q.o[i]}</button>`).join('')}</div><div id="qFb"></div>
+    <div class="row"><button class="btn main" id="qNext" hidden>Câu tiếp ➜</button></div></div>`;
+  $$('#qOpts .opt').forEach(b=>b.onclick=()=>qAns(+b.dataset.i));$('qNext').onclick=()=>{qi++;qRender()};
+  if(L.qStage)L.qStage({qi,qs,n:QS.length,last:null,pass:L.quizPass});
+  qt=setInterval(()=>{tl--;$('qTime').textContent='⏱ '+tl+' giây';$('qBar').style.width=(tl/30*100)+'%';if(tl<=5&&tl>0)sfx.tick();if(tl<=0)qAns(-1)},1000)}
+function qAns(i){if(qLock)return;qLock=true;clearInterval(qt);const q=QS[qi],ok=i===q.a;if(ok){qs++;sfx.ok()}else sfx.bad();
+  $$('#qOpts .opt').forEach(b=>{const k=+b.dataset.i;if(k===q.a)b.classList.add('right');else if(k===i)b.classList.add('wrong');b.disabled=true});
+  msg('qFb',(i<0?'⏰ Hết giờ! ':ok?'✅ Chính xác! ':'💭 Chưa đúng. ')+(q.e||''),ok?'ok':'warn');$('qNext').hidden=false;$('qNext').textContent=qi<QS.length-1?'Câu tiếp ➜':'Xem kết quả ➜';if(L.qStage)L.qStage({qi,qs,n:QS.length,last:ok,pass:L.quizPass})}
+
+/* khởi động */
+function boot(){loadST();
+  $('snd').textContent=soundOn?'🔊':'🔇';$('snd').onclick=()=>{soundOn=!soundOn;$('snd').textContent=soundOn?'🔊':'🔇';try{localStorage.setItem('vts-snd',soundOn?'1':'0')}catch(e){}};
+  $('nav').innerHTML=[['hub','00','Phòng chờ'],...L.rooms.map(r=>[r[0],r[3],r[1]]),['info','ⓘ','Thông tin học liệu']].map(r=>`<button data-go="${r[0]}"><span class="n">${r[1]}</span>${r[2]}</button>`).join('');
+  $$('#nav button').forEach(b=>b.onclick=()=>go(b.dataset.go));
+  if(!L.renderHub)$('hubRooms').innerHTML=L.rooms.map(r=>`<button class="panel room" data-go="${r[0]}"><span class="t"><small>${r[3]}</small><b>${r[4]}</b></span><span><h3>${r[1]}</h3><p>${r[2]}</p><span class="st"></span></span></button>`).join('');
+  $$('#hubRooms .room').forEach(b=>b.onclick=()=>go(b.dataset.go));
+  L.rooms.forEach(r=>{const s=$('v-'+r[0]);if(s)s.insertAdjacentHTML('afterbegin',`<div class="rhead"><span class="chip">Phòng ${r[3]} · ${r[1]}</span><div class="coach"><span class="av">${L.avatar}</span><div class="say"></div></div></div>`)});
+  $('infoT').innerHTML=L.info.map(r=>`<tr><th>${r[0]}</th><td>${r[1]}</td></tr>`).join('');
+  counts();if(L.hero)L.hero();
+  const h=location.hash.slice(1);go($('v-'+h)?h:'hub')}
+
+/* ====== TIN HỌC 7 · BÀI 5: ỨNG XỬ TRÊN MẠNG ====== */
+const L={key:'vts-tinhoc7-b5',coach:'Trợ lí Mạng',avatar:'🛡️',
+ rooms:[['r1','Nhóm chat lớp văn minh','Chọn cách trả lời lịch sự trong nhóm chat; nghĩ trước khi đăng.','01','💬',['chat','think']],
+  ['r2','Lá chắn an toàn','Xử lí quảng cáo lừa, nội dung xấu, đường link lạ, chatbot AI; bảo vệ thông tin cá nhân.','02','🛡',['shield','privacy']],
+  ['r3','Nói không với bắt nạt mạng','Nhận diện bắt nạt trên mạng và các bước tự bảo vệ, tìm trợ giúp.','03','🚫',['bully','help']],
+  ['r4','Cân bằng số','Dấu hiệu nghiện Internet; lập thời gian biểu một ngày cân bằng.','04','⏱',['signs','balance']],
+  ['r5','Thử thách & chứng nhận','8 câu hỏi tính giờ, nhận giấy chứng nhận Công dân số văn minh.','05','★',['quiz']]],
+ badges:{chat:'Người nhắn tin văn minh',think:'Nghĩ trước khi đăng',shield:'Lá chắn vững chắc',privacy:'Người giữ bí mật',bully:'Mắt tinh nhận diện',help:'Biết tìm trợ giúp',signs:'Tỉnh táo trên mạng',balance:'Cân bằng số',quiz:'Công dân số văn minh'},
+ quizRoom:'r5',quizPass:6,quizTitle:'Thử thách Công dân số văn minh',certTitle:'Công dân số văn minh',certTop:'ỨNG XỬ TRÊN MẠNG · TIN HỌC 7 · BÀI 5',certWhat:'thử thách về ứng xử trên mạng',
+ intro:{r1:'Chào em! Mình là Trợ lí Mạng. Sau mỗi màn hình là một người thật, nên mình nói chuyện trên mạng cũng lịch sự như ngoài đời nhé!',
+  r2:'Internet có rất nhiều điều hay nhưng cũng có "bẫy". Cùng dựng lá chắn nào!',
+  r3:'Không ai đáng bị bắt nạt, kể cả trên mạng. Và em không bao giờ phải đối mặt một mình.',
+  r4:'Internet là công cụ, không phải ông chủ. Cùng lập một ngày thật cân bằng nhé!',
+  r5:'Thử thách cuối cùng! 8 câu, mỗi câu 30 giây. Cố lên công dân số!'},
+ quiz:[
+  {q:'Khi giao tiếp qua mạng, em nên:',o:['dùng ngôn ngữ lịch sự, tôn trọng người khác','viết tắt, không dấu cho nhanh','dùng chữ in hoa để gây chú ý','trả lời thật nhiều biểu tượng cảm xúc'],a:0,e:'Giao tiếp qua mạng cũng cần lịch sự, văn hoá như ngoài đời.'},
+  {q:'Viết toàn bộ tin nhắn bằng CHỮ IN HOA thường bị hiểu là:',o:['đang quát, nói to','đang rất lịch sự','đang viết chính xác','không có ý nghĩa gì'],a:0,e:'Chữ in hoa toàn bộ dễ khiến người đọc cảm thấy bị quát.'},
+  {q:'Khi vô tình gặp nội dung không phù hợp trên mạng, em nên:',o:['đóng ngay và kể với bố mẹ, thầy cô','xem tiếp cho biết','chia sẻ cho bạn bè cùng xem','tải về máy'],a:0,e:'Đóng ngay và hỏi ý kiến người lớn.'},
+  {q:'Thông tin nào cần giữ bí mật khi lên mạng?',o:['Mật khẩu tài khoản','Môn học yêu thích','Cuốn sách em thích đọc','Đội bóng em hâm mộ'],a:0,e:'Mật khẩu, địa chỉ nhà, số điện thoại, mã OTP cần giữ bí mật.'},
+  {q:'Biểu hiện nào là dấu hiệu nghiện Internet?',o:['Bỏ ăn, thức khuya vì mải lên mạng','Tra cứu tài liệu học tập','Gọi video với ông bà','Đặt giờ nghỉ mắt khi dùng máy'],a:0,e:'Bỏ bê ăn ngủ, học tập vì Internet là dấu hiệu đáng lo.'},
+  {q:'Khi bị bắt nạt trên mạng, việc <b>không nên</b> làm là:',o:['nhắn lại những lời lẽ xúc phạm để trả đũa','chụp màn hình lưu bằng chứng','chặn tài khoản bắt nạt','kể với bố mẹ, thầy cô'],a:0,e:'Đáp trả chỉ làm sự việc tệ hơn; hãy lưu bằng chứng, chặn và báo người lớn.'},
+  {q:'Số điện thoại Tổng đài quốc gia bảo vệ trẻ em là:',o:['111','113','114','115'],a:0,e:'Tổng đài 111, gọi miễn phí.'},
+  {q:'Thông tin do chatbot AI đưa ra:',o:['cần kiểm tra lại với SGK và nguồn tin cậy','luôn đúng tuyệt đối','được chép nguyên vào bài làm','không bao giờ cần kiểm tra'],a:0,e:'AI có thể sai; hãy kiểm tra lại và chỉ dùng để tham khảo.'}],
+ info:[['Tên học liệu','Ứng xử trên mạng – Công dân số văn minh'],['Loại học liệu','Học liệu tương tác và mô phỏng (mục II.2.3)'],['Môn học, lớp','Tin học 7 – bộ sách Kết nối tri thức với cuộc sống'],['Bài học','Chủ đề 3. Đạo đức, pháp luật và văn hoá trong môi trường số – Bài 5. Ứng xử trên mạng'],
+  ['Yêu cầu cần đạt','Thực hiện được giao tiếp qua mạng theo đúng quy tắc, bằng ngôn ngữ lịch sự, thể hiện ứng xử có văn hoá. Biết cách phòng tránh và xử lí khi gặp thông tin không phù hợp trên mạng. Nêu được tác hại và cách phòng tránh nghiện Internet. Biết nhờ người lớn giúp đỡ khi bị bắt nạt trên mạng.'],
+  ['Mục đích, đối tượng','Giáo viên dùng trong hoạt động khám phá, luyện tập, vận dụng; giáo viên chủ nhiệm dùng trong giờ sinh hoạt lớp; học sinh lớp 7 tự học, tự kiểm tra.'],
+  ['Hướng dẫn khai thác','Chọn phòng trên thanh điều hướng. Mỗi phòng có mục "Gợi ý cho giáo viên". Các nhóm chat, cửa sổ trình duyệt là mô phỏng, tên nhân vật là hư cấu. Nút 🤖 mở trợ giảng AI chỉ gợi ý, không làm hộ. Chạy trên trình duyệt, không cần cài đặt, không cần đăng nhập.'],
+  ['Tác giả','Ngô Thị Phương – Trường THCS Võ Thị Sáu, phường An Biên, thành phố Hải Phòng'],
+  ['Nguồn tài liệu','SGK Tin học 7 (Kết nối tri thức với cuộc sống), Bài 5. Ứng xử trên mạng. Tổng đài điện thoại quốc gia bảo vệ trẻ em 111. Các tình huống do tác giả xây dựng.'],
+  ['Bản quyền','Hình vẽ, mô phỏng, âm thanh do tác giả tạo bằng mã; không dùng tài nguyên của bên thứ ba. Phông chữ Nunito, Lexend, Be Vietnam Pro, JetBrains Mono (giấy phép SIL OFL).'],
+  ['Sử dụng trí tuệ nhân tạo','Có dùng trợ lý AI Claude (Anthropic) hỗ trợ thiết kế, viết mã; trợ giảng AI dùng Gemini (Google) với lời nhắc sư phạm do tác giả soạn. Tác giả đã kiểm tra, xác minh nội dung và chịu trách nhiệm về tính chính xác.'],
+  ['An toàn thông tin','Không thu thập, không gửi dữ liệu cá nhân; thời gian biểu, tên trên giấy chứng nhận và huy hiệu chỉ lưu trên thiết bị của người dùng.'],['Phiên bản','1.0 – tháng 10/2026']],
+ hero:heroT5};
+
+/* ---------- PHÒNG CHỜ ---------- */
+function heroT5(){const S=[['in','Lan','Mai kiểm tra Toán mấy giờ nhỉ cả lớp? 🤔'],['me','','Tiết 2 nha Lan, cố lên! 💪'],['in','Minh','Cảm ơn bạn nhiều nhé 😊'],['sys','','🛡️ Trước khi gửi: Thật? Tử tế? Riêng tư? Hữu ích? Cần thiết?'],['in','Tài khoản lạ','Em cho anh xin địa chỉ nhà để tặng quà nhé!'],['sys','','🚫 Không trả lời người lạ · chặn · báo bố mẹ, thầy cô']];
+  let k=0;const box=$('heroChat');function step(){if(!$('v-hub').hidden){if(k===0)box.innerHTML='';const m=S[k];box.insertAdjacentHTML('beforeend',`<div class="bub ${m[0]}">${m[1]?'<b>'+m[1]+'</b>':''}${m[2]}</div>`);k=(k+1)%S.length;$('heroCap').textContent=k===0?'Mỗi lời nhắn đều nên văn minh và an toàn.':''}setTimeout(step,k===0?3500:1500)}step()}
+
+/* tiện ích */
+function pickOpts(boxId,list,correctIdx,onPick){$(boxId).innerHTML=shuffle(list.map((t,k)=>k)).map(k=>`<button class="opt" data-k="${k}">${list[k]}</button>`).join('');
+  let done=false;$$('#'+boxId+' .opt').forEach(b=>b.onclick=()=>{if(done)return;done=true;const ok=+b.dataset.k===correctIdx;$$('#'+boxId+' .opt').forEach(x=>{if(+x.dataset.k===correctIdx)x.classList.add('right');else if(x===b)x.classList.add('wrong')});onPick(ok,b)})}
+function ynRoom(o){let i=0,s=0,done=false;const T=o.T;
+  function load(){done=false;if(o.e)$(o.e).textContent=T[i][2]||'';$(o.q).textContent=T[i][0];msg(o.f,'');prog(o.p,i,T.length,s);$$(o.btn).forEach(x=>x.classList.remove('right','wrong'))}
+  $$(o.btn).forEach(b=>b.onclick=()=>{if(done)return;done=true;const ok=+b.dataset.k===T[i][1];if(ok){s++;sfx.ok()}else sfx.bad();$$(o.btn).forEach(x=>{if(+x.dataset.k===T[i][1])x.classList.add('right');else if(x===b)x.classList.add('wrong')});msg(o.f,(ok?'✅ ':'💭 ')+T[i][3],ok?'ok':'warn');prog(o.p,i+1,T.length,s)});
+  $(o.nx).onclick=()=>{if(!done){msg(o.f,'Em chọn đáp án trước nhé!','info');return}if(i<T.length-1){i++;load()}else{const p=s>=o.pass;msg(o.f,p?`🎉 Em đúng ${s}/${T.length}!`:`Em đúng ${s}/${T.length}. Cần ${o.pass}/${T.length} để nhận huy hiệu, làm lại nhé!`,p?'ok':'warn');if(p)award(o.badge);else{i=0;s=0;setTimeout(load,1800)}}};
+  load();return{get k(){return T[i][1]}}}
+
+/* ---------- R1a NHÓM CHAT ---------- */
+(function(){const T=[{t:'Nhóm lớp 7C8',m:[['Lan','Mai kiểm tra Toán mấy giờ nhỉ cả lớp?']],o:['Tiết 2 nha Lan, cố lên! 💪','Hỏi gì mà hỏi lắm thế!','(Gửi liền 10 nhãn dán, không trả lời)'],e:'Trả lời đúng câu hỏi, lịch sự và động viên bạn.'},
+  {t:'Nhóm lớp 7C8',m:[['An','(gửi ảnh chụp lén một bạn đang ngủ gật trong lớp) 😂😂']],o:['An xoá ảnh đi nhé, bạn ấy sẽ buồn đấy.','Haha, gửi sang nhóm khác cho vui!','(Thả biểu tượng cười)'],e:'Không chia sẻ ảnh của người khác khi chưa được đồng ý; nhắc nhở bạn nhẹ nhàng.'},
+  {t:'Nhóm lớp 7C8',m:[['Minh','Mình nghĩ lớp mình nên đi dã ngoại ở Đồ Sơn.']],o:['Mình nghĩ khác một chút: đi Cát Bà sẽ có nhiều hoạt động hơn, mọi người thấy sao?','Ý kiến của Minh dở tệ.','MINH NÓI SAI RỒI!!!'],e:'Không đồng tình vẫn có thể nói lịch sự, tôn trọng; chữ in hoa toàn bộ giống như đang quát.'},
+  {t:'Tin nhắn riêng · Tài khoản lạ',m:[['Người lạ','Em xinh quá! Cho anh xin địa chỉ nhà và vài tấm ảnh để anh gửi quà nhé.']],o:['Không trả lời, chặn tài khoản và kể với bố mẹ, thầy cô.','Gửi địa chỉ nhà để nhận quà.','Chỉ gửi ảnh, không gửi địa chỉ.'],e:'Không cung cấp thông tin, hình ảnh cá nhân cho người lạ; chặn và báo người lớn ngay.'},
+  {t:'Tin nhắn riêng · Cô giáo chủ nhiệm',m:[['Em muốn hỏi cô về câu 3 bài tập về nhà','']],o:['Em chào cô ạ. Em là Hoa lớp 7C8. Em chưa hiểu câu 3 bài tập về nhà, cô hướng dẫn em với ạ. Em cảm ơn cô!','cô ơi câu 3 lm s','Cô gửi đáp án câu 3 cho em đi.'],e:'Nhắn tin cho thầy cô: có lời chào, xưng tên lớp, viết đủ dấu, nêu rõ câu hỏi và cảm ơn.'}];
+  let i=0,s=0,done=false;
+  function load(){done=false;const t=T[i];$('ch-title').textContent=t.t;$('ch-log').innerHTML=t.m.map(m=>m[1]?`<div class="bub in"><b>${m[0]}</b>${m[1]}</div>`:`<div class="bub sys">${m[0]}</div>`).join('');msg('ch-f','');prog('ch',i,T.length,s);
+    pickOpts('ch-o',t.o,0,(ok,b)=>{done=true;if(ok){s++;sfx.ok()}else sfx.bad();$('ch-log').insertAdjacentHTML('beforeend',`<div class="bub me">${b.textContent}</div>`);msg('ch-f',(ok?'✅ Văn minh! ':'💭 Chưa phù hợp. ')+t.e,ok?'ok':'warn');prog('ch',i+1,T.length,s)})}
+  $('ch-nx').onclick=()=>{if(!done){msg('ch-f','Em chọn câu trả lời trước nhé!','info');return}if(i<T.length-1){i++;load()}else{const p=s>=4;msg('ch-f',p?'🎉 Em trả lời văn minh '+s+'/5 tình huống!':'Em đúng '+s+'/5. Cần 4/5 để nhận huy hiệu, làm lại nhé!',p?'ok':'warn');if(p)award('chat');else{i=0;s=0;setTimeout(load,1800)}}};
+  load()})();
+
+/* ---------- R1b NGHĨ TRƯỚC KHI ĐĂNG ---------- */
+window.__tk=ynRoom({T:[['"Chúc mừng đội bóng lớp mình đã vào chung kết! Cố lên!"',1,'','Đúng sự thật, tử tế, khích lệ: nên đăng.'],['"Nghe nói bạn X bị điểm kém, ai muốn xem bài kiểm tra của bạn ấy không?"',0,'','Làm bạn xấu hổ và lộ thông tin của người khác: không đăng.'],['"Tin nóng: mai cả trường được nghỉ học! (mình đoán thế)"',0,'','Chưa kiểm chứng, có thể là tin giả: không đăng.'],['"Mình vừa đọc một cuốn sách rất hay về vũ trụ, các bạn nên đọc thử."',1,'','Hữu ích, tích cực: nên đăng.'],['"Đây là ảnh thẻ học sinh của mình, có cả địa chỉ nhà nè."',0,'','Lộ thông tin cá nhân: không đăng.']],q:'tk-q',f:'tk-f',p:'tk',btn:'#v-r1 .yn .opt',nx:'tk-nx',pass:4,badge:'think'});
+
+/* ---------- R2a LÁ CHẮN ---------- */
+(function(){const T=[{u:'https://quatang-mienphi.xyz',e:'🎁',h:'CHÚC MỪNG! Bạn đã trúng 1 điện thoại!',d:'Nhấn vào đây và nhập số điện thoại để nhận quà ngay.',o:['Đóng cửa sổ, không nhấn, không nhập thông tin','Nhấn để nhận quà','Nhập số điện thoại của bố mẹ'],w:'Quảng cáo trúng thưởng bất ngờ thường là lừa đảo. Đóng lại, không cung cấp thông tin.'},
+  {u:'https://…/tim-tai-lieu',e:'⚠️',h:'Trang web có hình ảnh bạo lực',d:'Em đang tìm tài liệu thì vô tình mở phải trang này.',o:['Đóng ngay và kể với bố mẹ, thầy cô','Xem tiếp cho biết','Gửi đường link cho bạn cùng xem'],w:'Gặp nội dung không phù hợp: đóng ngay, không chia sẻ và hỏi ý kiến người lớn.'},
+  {u:'https://game-online.vn',e:'🎮',h:'Nhận vật phẩm miễn phí!',d:'Nhập tài khoản và mật khẩu mạng xã hội của bố mẹ để nhận quà trong trò chơi.',o:['Từ chối, không nhập bất kì tài khoản, mật khẩu nào','Nhập thử tài khoản của bố mẹ','Nhập tài khoản của mình'],w:'Không bao giờ cung cấp tài khoản, mật khẩu để đổi quà.'},
+  {u:'https://chatbot-ai.example',e:'🤖',h:'Chatbot AI trả lời bài lịch sử của em',d:'AI đưa ra một mốc năm rất tự tin, nhưng em chưa thấy trong SGK.',o:['Kiểm tra lại với SGK, nguồn tin cậy hoặc hỏi thầy cô','Chép nguyên vào bài làm','Tin tuyệt đối vì AI rất thông minh'],w:'AI có thể sai. Dùng AI để tham khảo, luôn kiểm chứng và không nhập thông tin cá nhân vào AI.'},
+  {u:'tin nhắn từ bạn',e:'🔗',h:'"Xem clip này hay lắm: bit.ly/xxxx"',d:'Đường link rút gọn lạ, không rõ nội dung.',o:['Không nhấn, hỏi lại bạn và báo người lớn nếu nghi ngờ','Nhấn ngay xem là gì','Chuyển tiếp cho cả lớp'],w:'Đường link lạ có thể chứa mã độc hoặc nội dung xấu. Thận trọng, hỏi lại trước khi mở.'}];
+  let i=0,s=0,done=false;
+  function load(){done=false;const t=T[i];$('sh-url').textContent=t.u;$('sh-pop').innerHTML=`<div class="e">${t.e}</div><b>${t.h}</b><div class="small dim">${t.d}</div>`;msg('sh-f','');prog('sh',i,T.length,s);
+    pickOpts('sh-o',t.o,0,ok=>{done=true;if(ok){s++;sfx.ok()}else sfx.bad();msg('sh-f',(ok?'✅ ':'💭 ')+t.w,ok?'ok':'warn');prog('sh',i+1,T.length,s);if(ok)$('sh-pop').innerHTML='<div class="e">🛡️</div><b>Đã an toàn!</b>'})}
+  $('sh-nx').onclick=()=>{if(!done){msg('sh-f','Em chọn cách xử lí trước nhé!','info');return}if(i<T.length-1){i++;load()}else{const p=s>=4;msg('sh-f',p?'🎉 Lá chắn của em đã chặn '+s+'/5 bẫy!':'Em đúng '+s+'/5. Cần 4/5 để nhận huy hiệu, làm lại nhé!',p?'ok':'warn');if(p)award('shield');else{i=0;s=0;setTimeout(load,1800)}}};
+  load()})();
+
+/* ---------- R2b KÉT SẮT THÔNG TIN ---------- */
+(function(){const T=[['🔑','Mật khẩu tài khoản',1],['📚','Môn học em yêu thích',0],['🏠','Địa chỉ nhà',1],['⚽','Đội bóng em hâm mộ',0],['📱','Số điện thoại',1],['🔢','Mã OTP gửi về điện thoại',1],['📖','Cuốn truyện em mới đọc',0],['🪪','Ảnh căn cước, thẻ học sinh',1]];
+  let i=0,s=0,done=false;
+  function load(){done=false;$('pv-e').textContent=T[i][0];$('pv-q').textContent=T[i][1];msg('pv-f','');prog('pv',i,T.length,s);if(i===0){$('pv-1').innerHTML='';$('pv-0').innerHTML=''}}
+  $$('#v-r2 .bin').forEach(b=>b.onclick=()=>{if(done)return;done=true;const ok=+b.dataset.k===T[i][2];if(ok){s++;sfx.ok()}else sfx.bad();$('pv-'+T[i][2]).insertAdjacentHTML('beforeend',`<span>${T[i][0]} ${T[i][1]}</span>`);
+    msg('pv-f',(ok?'✅ ':'💭 ')+(T[i][2]?`${T[i][1]} là thông tin cần <b>giữ bí mật</b>, kẻ xấu có thể lợi dụng.`:`${T[i][1]} không làm lộ danh tính hay tài khoản, có thể chia sẻ.`),ok?'ok':'warn');prog('pv',i+1,T.length,s)});
+  $('pv-nx').onclick=()=>{if(!done){msg('pv-f','Em chọn một ô trước nhé!','info');return}if(i<T.length-1){i++;load()}else{const p=s>=7;msg('pv-f',p?'🎉 Em phân loại đúng '+s+'/8!':'Em đúng '+s+'/8. Cần 7/8 để nhận huy hiệu, làm lại nhé!',p?'ok':'warn');if(p)award('privacy');else{i=0;s=0;setTimeout(load,1800)}}};
+  window.__pv={get k(){return T[i][2]}};load()})();
+
+/* ---------- R3a BẮT NẠT ---------- */
+window.__bl=ynRoom({T:[['Lập nhóm chat riêng để chế giễu ngoại hình một bạn.',1,'👥','Đây là bắt nạt: cố ý chế giễu, cô lập bạn.'],['Đăng ảnh xấu của bạn kèm lời chê bai lên mạng.',1,'📸','Đây là bắt nạt: làm bạn xấu hổ trước nhiều người.'],['Nhắn riêng, góp ý nhẹ nhàng khi bạn đăng thông tin chưa đúng.',0,'💬','Không phải bắt nạt: đây là góp ý tôn trọng.'],['Liên tục nhắn tin đe doạ một bạn.',1,'😠','Đây là bắt nạt: đe doạ là hành vi rất nghiêm trọng.'],['Chúc mừng sinh nhật bạn trên nhóm lớp.',0,'🎂','Không phải bắt nạt: đây là hành động tích cực.']],e:'bl-e',q:'bl-q',f:'bl-f',p:'bl',btn:'#v-r3 .yn .opt',nx:'bl-nx',pass:4,badge:'bully'});
+
+/* ---------- R3b CÁC BƯỚC TÌM TRỢ GIÚP ---------- */
+(function(){const S=['Giữ bình tĩnh, không đáp trả lời lẽ xúc phạm.','Lưu lại bằng chứng (chụp màn hình tin nhắn, bài đăng).','Chặn tài khoản bắt nạt, báo cáo với nền tảng mạng xã hội.','Kể với bố mẹ, thầy cô; có thể gọi Tổng đài 111.'];let pos=0;
+  function load(){pos=0;msg('hp-f','');const box=$('hp-cards');box.innerHTML='';shuffle(S.map((t,k)=>k)).forEach(k=>{const b=document.createElement('button');b.className='sc';b.innerHTML=`<b class="n">?</b><span>${S[k]}</span>`;b.onclick=()=>tap(b,k);box.appendChild(b)})}
+  function tap(b,k){if(b.classList.contains('done'))return;if(k===pos){b.classList.add('done');b.querySelector('.n').textContent=pos+1;pos++;sfx.tap();if(pos===S.length){sfx.ok();msg('hp-f','✅ Chính xác! Hãy nhớ: em không có lỗi khi bị bắt nạt, và luôn có người sẵn sàng giúp em.','ok');award('help')}}
+    else{sfx.bad();b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),400);msg('hp-f','Chưa đúng thứ tự. 💡 Trước hết là bình tĩnh, sau đó giữ bằng chứng rồi mới chặn và báo người lớn.','warn')}}
+  window.__hp={order:S};load()})();
+
+/* ---------- R4a DẤU HIỆU ---------- */
+window.__sg=ynRoom({T:[['Quên ăn, thức khuya vì mải chơi game trên mạng.',1,'🌙','Là dấu hiệu: ảnh hưởng ăn uống, giấc ngủ, sức khoẻ.'],['Cáu gắt, bực bội khi bị yêu cầu tắt máy.',1,'😤','Là dấu hiệu: khó kiểm soát cảm xúc khi không được lên mạng.'],['Dùng máy tính 30 phút để tra cứu bài tập.',0,'📚','Thói quen tốt: dùng Internet có mục đích, có thời hạn.'],['Bỏ bê học tập, ít gặp gỡ bạn bè ngoài đời.',1,'🏠','Là dấu hiệu: sa sút học tập, thu mình.'],['Đặt hẹn giờ nghỉ mắt, vận động sau mỗi lần dùng máy khoảng 30–45 phút.',0,'⏰','Thói quen tốt: tự kiểm soát thời gian.']],e:'sg-e',q:'sg-q',f:'sg-f',p:'sg',btn:'#v-r4 .yn .opt',nx:'sg-nx',pass:4,badge:'signs'});
+
+/* ---------- R4b THỜI GIAN BIỂU ---------- */
+(function(){const R=[['sleep','😴 Ngủ',8,'#6366f1'],['school','🏫 Học ở trường',8,'#2563eb'],['study','📚 Tự học ở nhà',2,'#0ea5e9'],['move','⚽ Vận động, ngoài trời',1,'#10b981'],['family','🍚 Ăn uống, việc nhà, gia đình',2,'#f59e0b'],['screen','📱 Giải trí trên màn hình',3,'#ef4444']];
+  const v={};R.forEach(r=>v[r[0]]=r[2]);
+  $('pl-rows').innerHTML=R.map(r=>`<div class="pr"><label for="pl-${r[0]}">${r[1]}</label><input type="range" id="pl-${r[0]}" min="0" max="12" step="0.5" value="${r[2]}"><b id="pl-${r[0]}-v"></b></div>`).join('')+'<div class="pr"><span><b style="text-align:left">Tổng</b></span><span></span><b id="pl-sum"></b></div>';
+  function upd(){let sum=0;R.forEach(r=>{v[r[0]]=+$('pl-'+r[0]).value;sum+=v[r[0]];$('pl-'+r[0]+'-v').textContent=String(v[r[0]]).replace('.',',')+' giờ'});
+    $('pl-sum').textContent=String(sum).replace('.',',')+'/24 giờ';$('pl-sum').style.color=sum===24?'#13653f':'#b45309';
+    $('pl-bar').innerHTML=R.map(r=>v[r[0]]?`<span style="flex:${v[r[0]]};background:${r[3]}">${v[r[0]]>=1.5?r[1].split(' ')[0]:''}</span>`:'').join('');return sum}
+  R.forEach(r=>$('pl-'+r[0]).oninput=upd);upd();
+  $('pl-ck').onclick=()=>{const sum=upd(),tips=[];if(sum!==24){msg('pl-f',`Tổng hiện là ${String(sum).replace('.',',')} giờ. Em điều chỉnh để tổng đúng 24 giờ nhé.`,'info');return}
+    if(v.sleep<9)tips.push('😴 Tuổi của em cần ngủ đủ giấc, nên khoảng 9 tiếng mỗi đêm.');if(v.screen>2)tips.push('📱 Nhiều chuyên gia khuyên giải trí trên màn hình không quá 2 giờ mỗi ngày.');if(v.move<1)tips.push('⚽ Nên dành ít nhất 1 giờ vận động, chơi ngoài trời.');if(v.study<1)tips.push('📚 Nên dành thời gian tự học ở nhà.');
+    if(!tips.length){sfx.ok();msg('pl-f','🎉 Thời gian biểu rất cân bằng! Hãy chụp lại và thử thực hiện cùng gia đình trong một tuần nhé.','ok');award('balance');say('Một ngày cân bằng giúp em khoẻ mạnh và học tốt hơn!')}
+    else{sfx.bad();msg('pl-f','Gần được rồi! Gợi ý điều chỉnh:<br>'+tips.join('<br>'),'warn')}};
+  window.__pl={set(o){Object.entries(o).forEach(([k,x])=>$('pl-'+k).value=x);upd()}}})();
+/* ====== GIAO DIỆN RIÊNG: MÀN HÌNH ĐIỆN THOẠI ====== */
+L.appi={r1:['💬','Chat lớp','#22c55e'],r2:['🛡️','Lá chắn','#2563eb'],r3:['🚫','Chống bắt nạt','#ef4444'],r4:['⏱️','Cân bằng','#f59e0b'],r5:['🏆','Thử thách','#8b5cf6'],info:['ⓘ','Thông tin','#64748b']};
+L.renderHub=function(){const box=$('hubRooms');box.className='homewrap';const t=new Date(),hh=String(t.getHours()).padStart(2,'0')+':'+String(t.getMinutes()).padStart(2,'0');
+  const nb=Object.keys(L.badges).filter(k=>ST.b[k]).length,NB=Object.keys(L.badges).length;
+  const apps=L.rooms.map(r=>{const left=r[5].filter(k=>!ST.b[k]).length,[e,n,c]=L.appi[r[0]];return `<button class="appi" data-go="${r[0]}"><span class="ico" style="background:${c}">${e}${left?`<i>${left}</i>`:''}</span><span>${n}</span></button>`}).join('')+`<button class="appi" data-go="info"><span class="ico" style="background:#64748b">ⓘ</span><span>Thông tin</span></button>`;
+  box.innerHTML=`<div class="phone2"><div class="sbar"><span>${hh}</span><span>📶 🔋${Math.round(nb/NB*100)}%</span></div>
+    <div class="wid"><b>Công dân số văn minh</b><small>${nb}/${NB} huy hiệu · chạm vào một ứng dụng để bắt đầu</small><div class="wbar"><i style="width:${nb/NB*100}%"></i></div></div>
+    <div class="apps">${apps}</div><div class="dock"><span>🛡️ Nghĩ trước khi bấm Gửi</span></div></div>
+    <div class="hometip"><b>📱 Mỗi phòng là một "ứng dụng"</b><p>Chấm đỏ trên biểu tượng cho biết còn bao nhiêu huy hiệu chưa nhận trong phòng đó. Mở hết các ứng dụng để pin đầy 100%!</p></div>`;
+  $$('#hubRooms .appi').forEach(b=>b.onclick=()=>go(b.dataset.go))};
+
+/* chặng cuối: tường lửa */
+const QR=[];
+L.qStage=function(o){if(o.qi===0&&o.last===null)QR.length=0;if(o.last!==null)QR[o.qi]=o.last;const ok=QR.filter(x=>x).length,end=o.last!==null&&o.qi===o.n-1,win=end&&o.qs>=o.pass;
+  $('qStage').innerHTML=`<div class="fw${win?' win':''}"><div class="fwh">🧱 TƯỜNG LỬA CỦA EM · ${ok}/${o.n} lớp bảo vệ</div><div class="fwrow">${[...Array(o.n)].map((_,i)=>`<span class="${QR[i]===true?'ok':QR[i]===false?'bad':i===o.qi&&o.last===null?'cur':''}">${QR[i]===true?'🛡️':QR[i]===false?'🦠':'·'}</span>`).join('')}</div>
+    <div class="fwt">${win?'Tường lửa vững chắc! Không mối nguy nào lọt qua được em.':end?'Tường lửa còn lỗ hổng, cần ít nhất '+o.pass+' lớp bảo vệ.':'Mỗi câu đúng dựng thêm một lớp bảo vệ, câu sai để lọt một "virus". Cần ít nhất '+o.pass+'/'+o.n+'.'}</div></div>`};
+
+/* giấy chứng nhận: thẻ công dân số */
+L.cert=c=>{let qr='';for(let i=0;i<81;i++)qr+=`<i style="background:${(i*7+c.qs*3+i%5)%3?'#14213d':'#fff'}"></i>`;
+  return `<div class="idcard"><div class="idh"><span>🛡️ THẺ CÔNG DÂN SỐ VĂN MINH</span><span>TIN HỌC 7 · BÀI 5</span></div>
+  <div class="idb"><div class="ida">🧑‍💻</div><div class="idi"><small>Họ và tên</small><div class="who" id="certWho">${c.name}</div><small>Danh hiệu</small><b>Công dân số văn minh</b>
+  <div class="idg"><div><small>Thử thách</small><b>${c.qs}/${c.n}</b></div><div><small>Huy hiệu</small><b>${c.b}/${c.B}</b></div><div><small>Ngày cấp</small><b>${c.date}</b></div></div></div><div class="idq">${qr}</div></div>
+  <div class="idf">Cam kết: Lịch sự · An toàn · Tử tế · Cân bằng<br><small>GV hướng dẫn: Ngô Thị Phương – THCS Võ Thị Sáu, Hải Phòng</small></div></div>
+  <div class="row center">${c.nameIn}</div><div class="small" style="text-align:center;margin-top:6px">📸 Chụp màn hình gửi cô nhé!</div>`};
+
+boot();
+</script>
+<!-- ===== TRỢ GIẢNG AI – CÔNG DÂN SỐ VĂN MINH (dán ngay TRƯỚC thẻ </body> trong index.html) ===== -->
+<style>
+#tgai-btn{position:fixed;right:18px;bottom:18px;z-index:99999;display:flex;align-items:center;gap:8px;padding:12px 18px;border:none;border-radius:999px;background:linear-gradient(135deg,#2dd4bf,#0ea5e9);color:#04221f;font:700 15px/1 'Be Vietnam Pro',system-ui,sans-serif;cursor:pointer;box-shadow:0 8px 24px rgba(45,212,191,.35)}
+#tgai-btn:hover{transform:translateY(-2px)}
+#tgai-box{position:fixed;right:18px;bottom:78px;z-index:99999;width:370px;max-width:calc(100vw - 32px);height:520px;max-height:calc(100vh - 110px);display:none;flex-direction:column;background:#0b1f24;border:1px solid #1f4a4f;border-radius:20px;box-shadow:0 18px 50px rgba(0,0,0,.5);font-family:'Be Vietnam Pro',system-ui,sans-serif;color:#e6fffb;overflow:hidden}
+#tgai-box.open{display:flex}
+#tgai-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:#0f2c32;border-bottom:1px solid #1f4a4f}
+#tgai-head b{font-size:15px}
+#tgai-head small{display:block;font-size:12px;color:#8fbfba;font-weight:400}
+#tgai-x{background:none;border:none;color:#8fbfba;font-size:22px;cursor:pointer}
+#tgai-log{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.tgai-b{padding:9px 12px;border-radius:14px;font-size:14px;line-height:1.5;max-width:88%;white-space:pre-wrap}
+.tgai-a{align-self:flex-start;background:#133a40;border-bottom-left-radius:4px}
+.tgai-u{align-self:flex-end;background:#2dd4bf;color:#04221f;border-bottom-right-radius:4px}
+#tgai-chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 12px 8px}
+.tgai-c{border:1px solid #1f4a4f;background:transparent;color:#bdf5ec;border-radius:999px;padding:5px 10px;font:13px 'Be Vietnam Pro',system-ui,sans-serif;cursor:pointer}
+#tgai-f{display:flex;gap:8px;padding:10px 12px;border-top:1px solid #1f4a4f}
+#tgai-q{flex:1;min-width:0;background:#0f2c32;border:1px solid #1f4a4f;border-radius:12px;padding:10px;color:#e6fffb;font:15px 'Be Vietnam Pro',system-ui,sans-serif}
+#tgai-send{border:none;border-radius:12px;padding:0 14px;background:#2dd4bf;color:#04221f;font-weight:700;cursor:pointer}
+#tgai-rule{font-size:11.5px;color:#8fbfba;padding:0 12px 10px}
+@media(max-width:600px){#tgai-btn .tgai-t{display:none}#tgai-btn{padding:14px;font-size:22px}}
+/* Khi trang được nhúng (Google Site): nút thành thanh ở đầu trang, khung chat mở ngay bên dưới */
+.tgai-embed #tgai-btn{position:relative;right:auto;bottom:auto;width:calc(100% - 24px);margin:10px 12px 0;justify-content:center;padding:12px 18px;font-size:15px}
+.tgai-embed #tgai-btn .tgai-t{display:inline}
+.tgai-embed #tgai-box{position:absolute;top:66px;bottom:auto;right:12px;height:500px;max-height:none}
+</style>
+
+<button id="tgai-btn" aria-label="Mở trợ giảng AI">🤖<span class="tgai-t"> Hỏi trợ giảng AI</span></button>
+<div id="tgai-box" role="dialog" aria-label="Trợ giảng AI">
+  <div id="tgai-head"><div><b>🤖 Trợ giảng AI</b><small>Tin học 7 · Bài 5: Ứng xử trên mạng</small></div><button id="tgai-x" aria-label="Đóng">×</button></div>
+  <div id="tgai-log"><div class="tgai-b tgai-a">Chào em! Mình là trợ giảng AI của Công dân số văn minh. Em có thắc mắc gì về cách ứng xử, an toàn trên mạng cứ hỏi nhé 😊</div></div>
+  <div id="tgai-chips">
+    <button class="tgai-c">Thế nào là bắt nạt trên mạng?</button>
+    <button class="tgai-c">Làm sao để không nghiện Internet?</button>
+    <button class="tgai-c">Gợi ý cho câu em đang làm</button>
+  </div>
+  <div id="tgai-f"><input id="tgai-q" maxlength="300" placeholder="Nhập câu hỏi của em…"><button id="tgai-send">Gửi</button></div>
+  <div id="tgai-rule">🛡️ Hỏi để hiểu, không hỏi để chép · Không ghi thông tin cá nhân · AI có thể sai, hãy kiểm tra với SGK và thầy cô.</div>
+</div>
+
+<script>
+(function(){
+  // Đang nằm trong khung nhúng (Google Site)? -> đưa nút lên đầu trang để luôn nhìn thấy
+  var inFrame=false;try{inFrame=window.self!==window.top}catch(e){inFrame=true}
+  if(inFrame){document.documentElement.classList.add('tgai-embed');var bt=document.getElementById('tgai-btn');document.body.insertBefore(bt,document.body.firstChild);document.body.style.position='relative';document.body.appendChild(document.getElementById('tgai-box'))}
+  var box=document.getElementById('tgai-box'),log=document.getElementById('tgai-log'),inp=document.getElementById('tgai-q'),hist=[],busy=false;
+  document.getElementById('tgai-btn').onclick=function(){box.classList.toggle('open');if(box.classList.contains('open'))inp.focus()};
+  document.getElementById('tgai-x').onclick=function(){box.classList.remove('open')};
+  function add(t,who){var d=document.createElement('div');d.className='tgai-b '+who;d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight;return d}
+  function where(){
+    var v=[].slice.call(document.querySelectorAll('.view')).find(function(e){return !e.hidden}),t=v?v.innerText.replace(/\s+/g,' ').slice(0,320):'';
+    return 'Học sinh đang dùng học liệu "Công dân số văn minh" (Tin học 7, Bài 5: Ứng xử trên mạng). Phần đang xem: "'+t+'". KHÔNG nói ra đáp án của câu đang làm, chỉ gợi ý cách nghĩ.';
+  }
+  async function ask(text){
+    var q=(text||inp.value).trim(); if(!q||busy)return; inp.value=''; busy=true;
+    add(q,'tgai-u'); var w=add('Trợ giảng đang suy nghĩ…','tgai-a');
+    try{
+      var r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q,context:where(),history:hist.slice(-6)})});
+      var j=await r.json(); if(!r.ok||!j.reply)throw 0;
+      w.textContent=j.reply; hist.push({role:'user',text:q},{role:'ai',text:j.reply});
+    }catch(e){w.textContent='Trợ giảng AI đang tạm nghỉ. Em thử lại sau hoặc hỏi thầy cô nhé!'}
+    busy=false;
+  }
+  document.getElementById('tgai-send').onclick=function(){ask()};
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter')ask()});
+  document.querySelectorAll('.tgai-c').forEach(function(b){b.onclick=function(){ask(b.textContent)}});
+})();
+</script>
+<!-- ===== HẾT ĐOẠN TRỢ GIẢNG AI ===== -->
+
+<!-- Vercel Web Analytics -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
